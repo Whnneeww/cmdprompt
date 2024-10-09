@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postメッセージの受信 - CMDスタイル</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace; /* 等幅フォント */
+            background-color: black; /* 背景を黒に */
+            color: lime; /* 文字色を緑に */
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid lime; /* 境界線を緑に */
+        }
+        #message {
+            border-top: 1px solid lime;
+            padding-top: 10px;
+            margin-top: 10px;
+            white-space: pre-wrap; /* 改行をそのまま表示 */
+        }
+    </style>
+</head>
+<body>
+    <h1>Postメッセージを受信するプログラム</h1>
+    <div id="message">ここにメッセージが表示されます。</div>
+
+    <script>
+        // Postメッセージを受信するイベントリスナー
+        window.addEventListener("message", function(event) {
+            // 現在の時刻を取得
+            const currentTime = new Date().toLocaleTimeString();
+            // 受信したメッセージと送信元オリジン、受信時間を表示
+            const messageDiv = document.getElementById("message");
+            messageDiv.textContent = `送信元: ${event.origin}\n受信時間: ${currentTime}\n内容: ${event.data}`;
+        }, false);
+    </script>
+</body>
+</html>
